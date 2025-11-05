@@ -24,3 +24,7 @@ jwt:
   secret-key: ${JWT_SECRET_KEY}
   access-exp: ${JWT_ACCESS_EXP}
   refresh-exp: ${JWT_REFRESH_EXP}
+
+app:
+  fast-api:
+    base-url: ${FAST_API_BASE_URL}
