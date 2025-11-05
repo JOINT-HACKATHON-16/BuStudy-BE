@@ -4,6 +4,7 @@ import com.example.hackaton16.domain.refreshtoken.domain.RefreshToken
 import com.example.hackaton16.domain.refreshtoken.domain.repository.RefreshTokenRepository
 import com.example.hackaton16.global.exception.ExpiredTokenException
 import com.example.hackaton16.global.exception.InvalidTokenException
+import com.example.hackaton16.global.security.auth.AuthDetailsService
 import com.example.hackaton16.global.utils.token.dto.TokenResponse
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
@@ -11,13 +12,18 @@ import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import java.util.Date
+import javax.crypto.SecretKey
 
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
+    private val authDetailsService: AuthDetailsService,
     private val refreshTokenRepository: RefreshTokenRepository,
 ) {
     companion object {
@@ -94,6 +100,36 @@ class JwtTokenProvider(
                 .verifyWith(key)
                 .build()
                 .parseSignedClaims(token)
+        } catch (e: ExpiredJwtException) {
+            throw ExpiredTokenException
+        } catch (e: Exception) {
+            throw InvalidTokenException
+        }
+    }
+
+    fun getAuthentication(token: String): Authentication {
+        val claims = getClaims(token)
+        val tokenType = claims.get("typ", String::class.java)
+
+        return when (tokenType) {
+            ACCESS_TOKEN -> {
+                val userDetails: UserDetails =
+                    authDetailsService.loadUserByUsername(claims.subject)
+                UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
+            }
+            else -> {
+                throw InvalidTokenException
+            }
+        }
+    }
+
+    fun getClaims(token: String): Claims {
+        return try {
+            val parser = Jwts.parser()
+                .verifyWith(key as SecretKey)
+                .build()
+
+            parser.parseSignedClaims(token).payload
         } catch (e: ExpiredJwtException) {
             throw ExpiredTokenException
         } catch (e: Exception) {
