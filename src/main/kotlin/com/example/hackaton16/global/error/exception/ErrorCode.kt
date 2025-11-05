@@ -4,6 +4,7 @@ enum class ErrorCode(
     val status: Int,
     val message: String,
 ) {
+    PASSWORD_MISMATCH(400, "비밀번호가 일치하지 않습니다."),
     INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
 
