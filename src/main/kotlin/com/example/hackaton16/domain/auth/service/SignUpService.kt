@@ -18,12 +18,12 @@ class SignUpService(
     @Transactional
     fun execute(request: SignUpRequest) {
 
-        if (request.password != request.passwordCheck) {
-            throw PasswordMismatchException
-        }
-
         if (userRepository.existsByLoginId(request.loginId)) {
             throw UserAlreadyExistsException
+        }
+
+        if (request.password != request.passwordCheck) {
+            throw PasswordMismatchException
         }
 
         val user = request.run {
