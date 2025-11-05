@@ -2,6 +2,7 @@ package com.example.hackaton16.domain.auth.presentation
 
 import com.example.hackaton16.domain.auth.presentation.dto.request.SignUpRequest
 import com.example.hackaton16.domain.auth.service.SignUpService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,7 +18,7 @@ class AuthController(
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    fun signUp(@RequestBody request: SignUpRequest) {
+    fun signUp(@RequestBody @Valid request: SignUpRequest) {
         signUpService.execute(request)
     }
 }
