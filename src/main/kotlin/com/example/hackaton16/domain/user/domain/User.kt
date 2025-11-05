@@ -13,7 +13,7 @@ class User(
     private val id: Long,
 
     @Column(name = "login_id", nullable = false, unique = true)
-    private val loingId: String,
+    private val loginId: String,
 
     @Column(name = "name", nullable = false)
     private val name: String,
