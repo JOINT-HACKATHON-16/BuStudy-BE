@@ -1,4 +1,4 @@
-package com.example.hackaton16.domain.auth.domain
+package com.example.hackaton16.domain.refreshtoken.domain
 
 import jakarta.persistence.Id
 import org.springframework.data.redis.core.RedisHash
