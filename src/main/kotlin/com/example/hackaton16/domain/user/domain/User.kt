@@ -10,7 +10,7 @@ import jakarta.persistence.Id
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     @Column(name = "login_id", nullable = false, unique = true)
     val loginId: String,
