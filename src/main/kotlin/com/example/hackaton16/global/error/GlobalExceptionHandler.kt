@@ -1,6 +1,6 @@
-package com.example.hackaton16.global.error.exception
+package com.example.hackaton16.global.error
 
-import com.example.hackaton16.global.error.ErrorResponse
+import com.example.hackaton16.global.error.exception.HackatonException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
