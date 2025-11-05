@@ -10,14 +10,14 @@ import jakarta.persistence.Id
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
+    val id: Long,
 
     @Column(name = "login_id", nullable = false, unique = true)
-    private val loginId: String,
+    val loginId: String,
 
     @Column(name = "name", nullable = false)
-    private val name: String,
+    val name: String,
 
     @Column(name = "password", nullable = false)
-    private val password: String
+    val password: String
 )
