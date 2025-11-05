@@ -4,6 +4,11 @@ enum class ErrorCode(
     val status: Int,
     val message: String,
 ) {
+    FEIGN_BAD_REQUEST(400, "Feign Bad Request"),
+    FEIGN_UNAUTHORIZED(401, "Feign UnAuthorized"),
+    FEIGN_FORBIDDEN(403, "Feign Forbidden"),
+    FEIGN_SERVER_ERROR(500, "Feign Server Error"),
+
     PASSWORD_MISMATCH(400, "비밀번호가 일치하지 않습니다."),
     INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
