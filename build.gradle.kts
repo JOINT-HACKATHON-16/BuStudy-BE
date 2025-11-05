@@ -20,6 +20,14 @@ repositories {
     mavenCentral()
 }
 
+extra["springCloudVersion"] = "2024.0.2"
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${extra["springCloudVersion"]}")
+    }
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
@@ -33,6 +41,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 }
 
 kotlin {
