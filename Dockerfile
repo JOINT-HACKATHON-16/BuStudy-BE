@@ -25,7 +25,7 @@ RUN ./gradlew build --no-daemon -x test
 #############################
 # Runtime Stage
 #############################
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 ENV TZ=Asia/Seoul
