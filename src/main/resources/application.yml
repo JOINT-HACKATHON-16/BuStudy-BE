@@ -39,3 +39,7 @@ app:
   data-go:
     base-url: ${DATA_GO_BASE_URL}
     service-key: ${DATA_GO_SERVICE_KEY}
+
+server:
+  address: 0.0.0.0
+  port: 8000
