@@ -16,7 +16,7 @@ class GenerateEstimatedTimeService(
     @Value("\${app.kakao-map-api.api-key}")
     lateinit var kakaoApiKey: String
 
-    @Value("\${app.od-say.api-key.api-key}")
+    @Value("\${app.od-say.api-key}")
     lateinit var odSayApiKey: String
 
     fun execute(request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
