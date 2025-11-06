@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/bus")
-class BusStopController(
+class BusController(
     private val queryBusStopListService: QueryBusStopListService
 ) : BusApiDocument {
 
