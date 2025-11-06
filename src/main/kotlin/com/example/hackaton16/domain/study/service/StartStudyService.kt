@@ -39,6 +39,7 @@ class StartStudyService(
                 )
 
                 QuizStudyResponse(
+                    contentType = ContentType.QUIZ,
                     uploadId = quiz.uploadId,
                     subject = quiz.subject,
                     questions = quiz.questions.map {
@@ -57,6 +58,7 @@ class StartStudyService(
                 val audioResponse = fastApiClient.generateAudio(subject.uploadId)
 
                 AudioStudyResponse(
+                    ContentType.AUDIO,
                     audioResponse.uploadId,
                     audioResponse.subject,
                     audioResponse.duration,
@@ -66,7 +68,7 @@ class StartStudyService(
 
             ContentType.LECTURE -> {
                 val lectureId = "-HtsNI3Jd2A"
-                LectureStudyResponse(lectureId)
+                LectureStudyResponse(ContentType.LECTURE, lectureId)
             }
 
         }
