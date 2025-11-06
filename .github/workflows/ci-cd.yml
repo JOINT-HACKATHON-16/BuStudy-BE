@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
-            cd /home/ubuntu/hexagonal
+            cd /home/ubuntu/BuStudy-BE
 
             echo "👉 Pulling latest code..."
             git pull origin main
