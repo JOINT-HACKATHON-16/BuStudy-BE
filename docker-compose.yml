@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: hexagonal-prac
+    container_name: BuStudy
     ports:
       - "8080:8080"
     depends_on:
