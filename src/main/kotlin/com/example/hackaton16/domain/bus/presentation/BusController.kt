@@ -1,9 +1,14 @@
 package com.example.hackaton16.domain.bus.presentation
 
+import com.example.hackaton16.domain.bus.presentation.dto.request.GenerateEstimatedTimeRequest
+import com.example.hackaton16.domain.bus.presentation.dto.response.GenerateEstimatedTimeResponse
+import com.example.hackaton16.domain.bus.service.GenerateEstimatedTimeService
 import com.example.hackaton16.domain.bus.service.QueryBusStopListService
 import com.example.hackaton16.global.document.bus.BusApiDocument
 import com.example.hackaton16.infrastructure.feign.client.datago.dto.response.BusStopResponse
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -11,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/bus")
 class BusController(
-    private val queryBusStopListService: QueryBusStopListService
+    private val queryBusStopListService: QueryBusStopListService,
+    private val generateEstimatedTimeService: GenerateEstimatedTimeService
 ) : BusApiDocument {
 
     @GetMapping
@@ -20,5 +26,10 @@ class BusController(
         @RequestParam lon: Double
     ): List<BusStopResponse.BusStationItem> {
         return queryBusStopListService.execute(lat, lon)
+    }
+
+    @PostMapping
+    fun generateEstimatedTime(@RequestBody request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
+        return generateEstimatedTimeService.execute(request)
     }
 }
