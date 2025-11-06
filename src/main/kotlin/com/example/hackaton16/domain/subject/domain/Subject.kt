@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import java.util.UUID
 
 @Entity(name = "tbl_subject")
 class Subject(
@@ -21,5 +22,8 @@ class Subject(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    val user: User,
+
+    @Column(name = "upload_id", nullable = false, unique = true)
+    val uploadId: UUID
 )
