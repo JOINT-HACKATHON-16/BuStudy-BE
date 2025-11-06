@@ -1,6 +1,7 @@
 package com.example.hackaton16.global.document.bus
 
 import com.example.hackaton16.domain.bus.presentation.dto.request.GenerateEstimatedTimeRequest
+import com.example.hackaton16.domain.bus.presentation.dto.response.BusStopListResponse
 import com.example.hackaton16.domain.bus.presentation.dto.response.GenerateEstimatedTimeResponse
 import com.example.hackaton16.global.error.ErrorResponse
 import com.example.hackaton16.infrastructure.feign.client.datago.dto.response.BusStopResponse
@@ -22,7 +23,7 @@ interface BusApiDocument {
             ApiResponse(
                 responseCode = "200",
                 description = "주변 정류장 조회 성공",
-                content = [Content(schema = Schema(implementation = BusStopResponse.BusStationItem::class))]
+                content = [Content(schema = Schema(implementation = BusStopListResponse::class))]
             ),
             ApiResponse(
                 responseCode = "400",
@@ -34,7 +35,7 @@ interface BusApiDocument {
     fun queryBusStopList(
         @RequestParam lat: Double,
         @RequestParam lon: Double
-    ): List<BusStopResponse.BusStationItem>
+    ): BusStopListResponse
 
     @Operation(summary = "버스 이동 예상 시간")
     @ApiResponses(
