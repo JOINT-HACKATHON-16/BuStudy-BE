@@ -1,5 +1,7 @@
 package com.example.hackaton16.domain.study.service
 
+import com.example.hackaton16.domain.question.domain.Question
+import com.example.hackaton16.domain.question.domain.repository.QuestionRepository
 import com.example.hackaton16.domain.study.enum.ContentType
 import com.example.hackaton16.domain.study.factory.StudyContentFactory
 import com.example.hackaton16.domain.study.presentation.dto.request.StudyRequest
@@ -18,7 +20,8 @@ import org.springframework.stereotype.Service
 class StartStudyService(
     private val fastApiClient: FastApiClient,
     private val subjectRepository: SubjectRepository,
-    private val studyContentFactory: StudyContentFactory
+    private val studyContentFactory: StudyContentFactory,
+    private val questionRepository: QuestionRepository
 ) {
 
     companion object {
@@ -36,6 +39,16 @@ class StartStudyService(
             ContentType.QUIZ -> {
                 val quiz = fastApiClient.generateQuiz(
                     GenerateQuizRequest(subject.uploadId, QUESTION_QUANTITY, DIFFICULTY)
+                )
+
+                questionRepository.saveAll(
+                    quiz.questions.map { quiz ->
+                        Question(
+                            question = quiz.question,
+                            correctAnswer = quiz.options[quiz.correctAnswer.toInt()],
+                            explanation = quiz.explanation
+                        )
+                    }
                 )
 
                 QuizStudyResponse(
