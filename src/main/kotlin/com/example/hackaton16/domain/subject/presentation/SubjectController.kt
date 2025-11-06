@@ -1,6 +1,7 @@
 package com.example.hackaton16.domain.subject.presentation
 
 import com.example.hackaton16.domain.subject.presentation.dto.response.QuerySubjectListResponse
+import com.example.hackaton16.domain.subject.presentation.dto.response.SaveSubjectResponse
 import com.example.hackaton16.domain.subject.service.QuerySubjectListService
 import com.example.hackaton16.domain.subject.service.SaveSubjectService
 import com.example.hackaton16.global.document.subject.SubjectApiDocument
@@ -22,8 +23,8 @@ class SubjectController(
 ) : SubjectApiDocument {
     @PostMapping(consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     @ResponseStatus(HttpStatus.CREATED)
-    override fun saveSubject(@RequestPart("image") file: MultipartFile) {
-        saveSubjectService.execute(file)
+    override fun saveSubject(@RequestPart("image") file: MultipartFile): SaveSubjectResponse {
+        return saveSubjectService.execute(file)
     }
 
     @GetMapping
