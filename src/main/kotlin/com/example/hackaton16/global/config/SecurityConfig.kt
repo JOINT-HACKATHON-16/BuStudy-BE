@@ -54,7 +54,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                     .requestMatchers("/auth/**").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .with(FilterConfig(jwtTokenProvider, objectMapper), Customizer.withDefaults())
 
