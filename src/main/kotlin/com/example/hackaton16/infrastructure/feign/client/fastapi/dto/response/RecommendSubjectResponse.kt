@@ -1,4 +1,4 @@
-package com.example.hackaton16.infrastructure.feign.client.subject.dto.response
+package com.example.hackaton16.infrastructure.feign.client.fastapi.dto.response
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
