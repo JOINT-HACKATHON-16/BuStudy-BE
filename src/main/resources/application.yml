@@ -33,6 +33,7 @@ app:
     api-key: ${OD_SAY_API_KEY}
   kakao-map-api:
     base-url: ${KAKAO_MAP_API_BASE_URL}
+    api-key: ${KAKAO_MAP_API_API_KEY}
   data-go:
     base-url: ${DATA_GO_BASE_URL}
     service-key: ${DATA_GO_SERVICE_KEY}
