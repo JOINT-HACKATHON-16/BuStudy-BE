@@ -30,3 +30,4 @@ app:
     base-url: ${FAST_API_BASE_URL}
   od-say:
     base-url: ${OD_SAY_BASE_URL}
+    api-key: ${OD_SAY_API_KEY}
