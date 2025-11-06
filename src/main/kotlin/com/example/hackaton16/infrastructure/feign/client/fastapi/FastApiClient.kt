@@ -18,7 +18,7 @@ import java.util.UUID
     url = "\${app.fast-api.base-url}"
 )
 interface FastApiClient {
-    @PostMapping("/upload", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    @PostMapping("/upload/", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     fun recommendSubject(@RequestPart("file") file: MultipartFile): RecommendSubjectResponse
 
     @PostMapping("/rag/quiz")
