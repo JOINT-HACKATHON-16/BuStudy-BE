@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface SubjectRepository : JpaRepository<Subject, Long> {
 
     fun findAllByUser(user: User): List<Subject>?
+
+    fun findSubjectById(subjectId: Long): Subject?
 }
