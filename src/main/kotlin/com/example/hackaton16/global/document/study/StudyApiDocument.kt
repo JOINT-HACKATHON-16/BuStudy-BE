@@ -1,6 +1,7 @@
 package com.example.hackaton16.global.document.study
 
 import com.example.hackaton16.domain.study.presentation.dto.request.StudyRequest
+import com.example.hackaton16.domain.study.presentation.dto.response.StudyResponse
 import com.example.hackaton16.global.error.ErrorResponse
 import com.example.hackaton16.infrastructure.feign.client.fastapi.dto.response.GenerateQuizResponse
 import io.swagger.v3.oas.annotations.Operation
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody
 @Tag(name = "study", description = "학습 API")
 interface StudyApiDocument {
 
-    @Operation(summary = "퀴즈 생성")
+    @Operation(summary = "학습 시작")
     @ApiResponses(
         value = [
             ApiResponse(
                 responseCode = "200",
-                description = "퀴즈 생성 성공",
+                description = "학습 시작 성공",
                 content = [Content(schema = Schema(implementation = GenerateQuizResponse::class))]
             ),
             ApiResponse(
@@ -35,8 +36,8 @@ interface StudyApiDocument {
             )
         ]
     )
-    fun generateQuiz(
+    fun generateStudyContent(
         @PathVariable("subject-id") subjectId: Long,
         @RequestBody request: StudyRequest
-    ): GenerateQuizResponse
+    ): StudyResponse
 }
