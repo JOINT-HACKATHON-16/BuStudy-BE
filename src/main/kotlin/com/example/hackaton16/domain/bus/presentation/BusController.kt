@@ -29,7 +29,7 @@ class BusController(
     }
 
     @PostMapping
-    fun generateEstimatedTime(@RequestBody request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
+    override fun generateEstimatedTime(@RequestBody request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
         return generateEstimatedTimeService.execute(request)
     }
 }
