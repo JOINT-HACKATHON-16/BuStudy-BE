@@ -12,15 +12,15 @@ class AuthDetails(
         private const val ROLE_USER = "ROLE_USER"
     }
 
-    override fun getAuthorities(): Collection<GrantedAuthority?> {
-        return listOf<SimpleGrantedAuthority>(SimpleGrantedAuthority(ROLE_USER))
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return listOf(SimpleGrantedAuthority(ROLE_USER))
     }
 
     override fun getPassword(): String? {
         return null
     }
 
-    override fun getUsername(): String? {
+    override fun getUsername(): String {
         return loginId
     }
 
