@@ -14,6 +14,7 @@ enum class ErrorCode(
     EXPIRED_TOKEN(401, "Expired Token"),
 
     USER_NOT_FOUND(404, "User Not Found"),
+    SUBJECT_NOT_FOUND(404, "Subject Not Found"),
     ALREADY_EXISTS_USER_ID(409, "이미 존재하는 아이디입니다."),
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 }
