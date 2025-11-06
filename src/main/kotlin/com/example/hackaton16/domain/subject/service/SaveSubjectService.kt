@@ -12,13 +12,13 @@ import java.util.UUID
 @Service
 class SaveSubjectService(
     private val subjectRepository: SubjectRepository,
-    private val subjectClient: FastApiClient,
+    private val fastApiClient: FastApiClient,
     private val userFacade: UserFacade
 ) {
     @Transactional
     fun execute(file: MultipartFile) {
         val user = userFacade.getCurrentUser()
-        val recommendSubjectResponse = subjectClient.recommendSubject(file)
+        val recommendSubjectResponse = fastApiClient.recommendSubject(file)
 
         subjectRepository.save(
             Subject(
