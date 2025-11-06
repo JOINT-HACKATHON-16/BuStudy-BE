@@ -14,7 +14,7 @@ COPY . .
 
 RUN ./gradlew build --no-daemon -x test
 
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 ENV TZ=Asia/Seoul
