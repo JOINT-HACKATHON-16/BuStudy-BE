@@ -26,7 +26,7 @@ class StartStudyService(
 
     companion object {
         private const val DIFFICULTY = "medium"
-        private const val QUESTION_QUANTITY = 1
+        private const val QUESTION_QUANTITY = 2
     }
 
     fun execute(subjectId: Long, request: StudyRequest): StudyResponse {
