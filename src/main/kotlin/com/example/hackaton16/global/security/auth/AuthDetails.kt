@@ -13,30 +13,20 @@ class AuthDetails(
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        return listOf(SimpleGrantedAuthority(ROLE_USER))
+        return mutableListOf(SimpleGrantedAuthority(ROLE_USER))
     }
 
     override fun getPassword(): String? {
         return null
     }
 
-    override fun getUsername(): String {
-        return loginId
-    }
+    override fun getUsername(): String = loginId
 
-    override fun isAccountNonExpired(): Boolean {
-        return true
-    }
+    override fun isAccountNonExpired(): Boolean = true
 
-    override fun isAccountNonLocked(): Boolean {
-        return true
-    }
+    override fun isAccountNonLocked(): Boolean = true
 
-    override fun isCredentialsNonExpired(): Boolean {
-        return true
-    }
+    override fun isCredentialsNonExpired(): Boolean = true
 
-    override fun isEnabled(): Boolean {
-        return true
-    }
+    override fun isEnabled(): Boolean = true
 }
