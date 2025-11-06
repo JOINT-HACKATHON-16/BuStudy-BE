@@ -1,4 +1,4 @@
-package com.example.hackaton16.infrastructure
+package com.example.hackaton16.infrastructure.feign
 
 import com.example.hackaton16.infrastructure.feign.exception.FeignBadRequestException
 import com.example.hackaton16.infrastructure.feign.exception.FeignForbiddenException
