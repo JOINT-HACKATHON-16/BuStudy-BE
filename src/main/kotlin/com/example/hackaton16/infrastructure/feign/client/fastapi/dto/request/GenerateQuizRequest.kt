@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.UUID
 
 data class GenerateQuizRequest(
+    @JsonProperty("upload_id")
     val uploadId: UUID,
 
     @JsonProperty("num_questions")
