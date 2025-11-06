@@ -2,6 +2,7 @@ package com.example.hackaton16.domain.subject.service
 
 import com.example.hackaton16.domain.subject.domain.Subject
 import com.example.hackaton16.domain.subject.domain.repository.SubjectRepository
+import com.example.hackaton16.domain.subject.presentation.dto.response.SaveSubjectResponse
 import com.example.hackaton16.domain.user.facade.UserFacade
 import com.example.hackaton16.infrastructure.feign.client.fastapi.FastApiClient
 import jakarta.transaction.Transactional
@@ -16,7 +17,7 @@ class SaveSubjectService(
     private val userFacade: UserFacade
 ) {
     @Transactional
-    fun execute(file: MultipartFile) {
+    fun execute(file: MultipartFile): SaveSubjectResponse {
         val user = userFacade.getCurrentUser()
         val recommendSubjectResponse = fastApiClient.recommendSubject(file)
 
@@ -27,5 +28,7 @@ class SaveSubjectService(
                 uploadId = UUID.fromString(recommendSubjectResponse.uploadId)
             )
         )
+
+        return SaveSubjectResponse(recommendSubjectResponse.subject)
     }
 }
