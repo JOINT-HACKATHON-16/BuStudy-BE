@@ -30,9 +30,8 @@ jwt:
 app:
   fast-api:
     base-url: ${FAST_API_BASE_URL}
-  od-say:
-    base-url: ${OD_SAY_BASE_URL}
-    api-key: ${OD_SAY_API_KEY}
+  serve-server:
+    base-url: ${SERVE_SERVER_BASE_URL}
   kakao-map-api:
     base-url: ${KAKAO_MAP_API_BASE_URL}
     api-key: ${KAKAO_MAP_API_KEY}
