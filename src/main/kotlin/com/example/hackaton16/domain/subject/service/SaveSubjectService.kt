@@ -1,0 +1,31 @@
+package com.example.hackaton16.domain.subject.service
+
+import com.example.hackaton16.domain.subject.domain.Subject
+import com.example.hackaton16.domain.subject.domain.repository.SubjectRepository
+import com.example.hackaton16.domain.user.facade.UserFacade
+import com.example.hackaton16.infrastructure.feign.client.subject.SubjectClient
+import jakarta.transaction.Transactional
+import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
+import java.util.UUID
+
+@Service
+class SaveSubjectService(
+    private val subjectRepository: SubjectRepository,
+    private val subjectClient: SubjectClient,
+    private val userFacade: UserFacade
+) {
+    @Transactional
+    fun execute(file: MultipartFile) {
+        val user = userFacade.getCurrentUser()
+        val recommendSubjectResponse = subjectClient.recommendSubject(file)
+
+        subjectRepository.save(
+            Subject(
+                user = user,
+                subject = recommendSubjectResponse.subject,
+                uploadId = UUID.fromString(recommendSubjectResponse.uploadId)
+            )
+        )
+    }
+}
