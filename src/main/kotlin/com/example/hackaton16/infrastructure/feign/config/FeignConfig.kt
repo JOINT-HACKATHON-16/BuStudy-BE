@@ -1,6 +1,6 @@
 package com.example.hackaton16.infrastructure.feign.config
 
-import com.example.hackaton16.infrastructure.FeignClientErrorDecoder
+import com.example.hackaton16.infrastructure.feign.FeignClientErrorDecoder
 import feign.codec.ErrorDecoder
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.cloud.openfeign.EnableFeignClients
