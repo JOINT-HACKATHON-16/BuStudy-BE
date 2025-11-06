@@ -3,7 +3,7 @@ package com.example.hackaton16.infrastructure.feign.client.datago.dto.response
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class BusStationResponse(
+data class BusStopResponse(
     val response: BusResponseWrapper?
 ) {
     data class BusResponseWrapper(
