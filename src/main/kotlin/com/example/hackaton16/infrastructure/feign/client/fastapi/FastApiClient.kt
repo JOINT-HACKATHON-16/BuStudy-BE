@@ -6,6 +6,7 @@ import com.example.hackaton16.infrastructure.feign.client.fastapi.dto.response.G
 import com.example.hackaton16.infrastructure.feign.client.fastapi.dto.response.RecommendSubjectResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,6 +25,6 @@ interface FastApiClient {
     @PostMapping("/rag/quiz")
     fun generateQuiz(@RequestBody request: GenerateQuizRequest): GenerateQuizResponse
 
-    @PostMapping("/rag/review/{upload-id}")
+    @GetMapping("/rag/review/{upload-id}")
     fun generateAudio(@PathVariable("upload-id") uploadId: UUID): AudioResponse
 }
