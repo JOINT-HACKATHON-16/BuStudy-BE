@@ -1,9 +1,9 @@
 package com.example.hackaton16.domain.study.presentation
 
 import com.example.hackaton16.domain.study.presentation.dto.request.StudyRequest
-import com.example.hackaton16.domain.study.service.GenerateQuizService
+import com.example.hackaton16.domain.study.presentation.dto.response.StudyResponse
+import com.example.hackaton16.domain.study.service.StartStudyService
 import com.example.hackaton16.global.document.study.StudyApiDocument
-import com.example.hackaton16.infrastructure.feign.client.fastapi.dto.response.GenerateQuizResponse
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/study")
 class StudyController(
-    private val generateQuizService: GenerateQuizService,
+    private val startStudyService: StartStudyService,
 ) : StudyApiDocument {
+
     @PostMapping("/{subject-id}")
-    override fun generateQuiz(
+    override fun generateStudyContent(
         @PathVariable("subject-id") subjectId: Long,
-        @RequestBody request: StudyRequest,
-    ): GenerateQuizResponse {
-        return generateQuizService.execute(subjectId, request)
+        @RequestBody request: StudyRequest
+    ): StudyResponse {
+        return startStudyService.execute(subjectId, request)
     }
 }
