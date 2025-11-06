@@ -4,27 +4,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BusStopResponse(
-    val response: BusResponseWrapper?
+    val response: Response
 ) {
-    data class BusResponseWrapper(
-        val body: BusResponseBody?
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class Response(
+        val header: Header?,
+        val body: Body
     )
 
-    data class BusResponseBody(
-        val items: BusResponseItems?,
-        val numOfRows: Int?,
-        val pageNo: Int?,
-        val totalCount: Int?
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class Header(
+        val resultCode: String,
+        val resultMsg: String
     )
 
-    data class BusResponseItems(
-        val item: List<BusStationItem>?
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class Body(
+        val numOfRows: Int,
+        val pageNo: Int,
+        val totalCount: Int,
+        val items: Items
     )
 
-    data class BusStationItem(
-        val nodeid: String?,
-        val gpslati: Double?,
-        val gpslong: Double?,
-        val nodenm: String?,
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class Items(
+        val item: List<BusStopItem>
+    )
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class BusStopItem(
+        val gpslati: Double,   // 위도
+        val gpslong: Double,   // 경도
+        val nodeid: String,    // 정류소 ID
+        val nodenm: String,    // 정류소명
+        val citycode: String   // 도시코드
     )
 }
