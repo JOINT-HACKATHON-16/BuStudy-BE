@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam
     url = "\${app.data-go.base-url}"
 )
 interface DataGoClient {
-    @GetMapping("getCrdntPrxmtSttnList")
+    @GetMapping("/getCrdntPrxmtSttnList")
     fun getBusStopList(
         @RequestParam("serviceKey") serviceKey: String,
         @RequestParam("gpsLati") gpsLati: Double,  // GPS Y좌표
