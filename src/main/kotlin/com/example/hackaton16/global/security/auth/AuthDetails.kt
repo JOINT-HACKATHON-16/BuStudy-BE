@@ -13,7 +13,7 @@ class AuthDetails(
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        return mutableListOf(SimpleGrantedAuthority(ROLE_USER))
+        return listOf(SimpleGrantedAuthority(ROLE_USER))
     }
 
     override fun getPassword(): String? {
