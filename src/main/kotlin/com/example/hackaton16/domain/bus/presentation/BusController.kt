@@ -1,11 +1,11 @@
 package com.example.hackaton16.domain.bus.presentation
 
 import com.example.hackaton16.domain.bus.presentation.dto.request.GenerateEstimatedTimeRequest
+import com.example.hackaton16.domain.bus.presentation.dto.response.BusStopListResponse
 import com.example.hackaton16.domain.bus.presentation.dto.response.GenerateEstimatedTimeResponse
 import com.example.hackaton16.domain.bus.service.GenerateEstimatedTimeService
 import com.example.hackaton16.domain.bus.service.QueryBusStopListService
 import com.example.hackaton16.global.document.bus.BusApiDocument
-import com.example.hackaton16.infrastructure.feign.client.datago.dto.response.BusStopResponse
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -25,7 +25,7 @@ class BusController(
     override fun queryBusStopList(
         @RequestParam lat: Double,
         @RequestParam lon: Double
-    ): List<BusStopResponse.BusStationItem> {
+    ): BusStopListResponse {
         return queryBusStopListService.execute(lat, lon)
     }
 
