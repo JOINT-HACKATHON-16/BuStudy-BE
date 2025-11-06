@@ -6,6 +6,7 @@ import com.example.hackaton16.domain.bus.service.GenerateEstimatedTimeService
 import com.example.hackaton16.domain.bus.service.QueryBusStopListService
 import com.example.hackaton16.global.document.bus.BusApiDocument
 import com.example.hackaton16.infrastructure.feign.client.datago.dto.response.BusStopResponse
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,7 +30,7 @@ class BusController(
     }
 
     @PostMapping
-    override fun generateEstimatedTime(@RequestBody request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
+    override fun generateEstimatedTime(@RequestBody @Valid request: GenerateEstimatedTimeRequest): GenerateEstimatedTimeResponse {
         return generateEstimatedTimeService.execute(request)
     }
 }
