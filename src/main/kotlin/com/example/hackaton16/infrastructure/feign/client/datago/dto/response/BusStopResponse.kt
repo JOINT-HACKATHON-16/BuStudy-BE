@@ -22,6 +22,7 @@ data class BusStopResponse(
     )
 
     data class BusStationItem(
+        val nodeid: String?,
         val gpslati: Double?,
         val gpslong: Double?,
         val nodenm: String?,
