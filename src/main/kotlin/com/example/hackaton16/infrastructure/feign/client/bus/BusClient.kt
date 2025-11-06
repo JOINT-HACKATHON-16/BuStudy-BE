@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 
 @FeignClient(
     name = "BusClient",
-    url = ""
+    url = "\${app.serve-server.base-url}"
 )
 interface BusClient {
     @PostMapping("/bus")
