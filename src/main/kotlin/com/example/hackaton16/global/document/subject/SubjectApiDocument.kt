@@ -1,6 +1,7 @@
 package com.example.hackaton16.global.document.subject
 
 import com.example.hackaton16.domain.subject.presentation.dto.response.QuerySubjectListResponse
+import com.example.hackaton16.domain.subject.presentation.dto.response.SaveSubjectResponse
 import com.example.hackaton16.global.error.ErrorResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
@@ -22,7 +23,8 @@ interface SubjectApiDocument {
         value = [
             ApiResponse(
                 responseCode = "201",
-                description = "과목 등록 성공"
+                description = "과목 등록 성공",
+                content = [Content(schema = Schema(implementation = SaveSubjectResponse::class))]
             ),
             ApiResponse(
                 responseCode = "400",
@@ -31,7 +33,7 @@ interface SubjectApiDocument {
             )
         ]
     )
-    fun saveSubject(@RequestPart("image") file: MultipartFile)
+    fun saveSubject(@RequestPart("image") file: MultipartFile): SaveSubjectResponse
 
     @Operation(summary = "과목 목록 조회")
     @ApiResponses(
